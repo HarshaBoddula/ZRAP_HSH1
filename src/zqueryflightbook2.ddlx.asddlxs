@@ -1,0 +1,98 @@
+@Metadata.layer: #CORE
+@UI.selectionPresentationVariant: [{
+    qualifier: 'Default',
+    presentationVariantQualifier: 'Default'
+//    selectionVariantQualifier: 'Default'
+ }]
+
+@UI.chart: [{
+   qualifier: 'ChartDefault',
+   chartType: #COLUMN_STACKED,
+   dimensions: ['Airline'],
+   measures: ['BookingPrice'],
+   dimensionAttributes: [{
+       dimension: 'Airline',
+       role: #SERIES
+    }],
+   measureAttributes: [{
+       measure: 'BookingPrice',
+       role: #AXIS_1
+    }]
+ }, 
+ {
+    qualifier: 'visualDate',
+    chartType: #DONUT,
+    title: 'Flight Price by Month Year',
+    description: 'Flight Data',
+    dimensions: [ 'month_year' ],
+    measures: [ 'BookingPrice' ],
+    dimensionAttributes: [{ dimension: 'month_year', role: #SERIES }],
+    measureAttributes: [{ measure: 'BookingPrice', role: #AXIS_1 }]
+ },
+ {
+    qualifier: 'visualCountry',
+    chartType: #LINE,
+    title: 'Flight Price by Country',
+    description: 'Flight Data by Country',
+    dimensions: [ 'CustomerCountry' ],
+    measures: [ 'BookingPrice' ],
+    dimensionAttributes: [{ dimension: 'CustomerCountry', role: #CATEGORY }],
+    measureAttributes: [{ measure: 'BookingPrice', role: #AXIS_1 }]
+ }]
+ 
+ @UI.presentationVariant: [{
+   qualifier: 'Default',
+   visualizations: [{
+       type: #AS_CHART,
+       qualifier: 'ChartDefault'
+   }]
+},
+{ 
+    qualifier: 'visualFilterDate',
+   visualizations: [{
+       type: #AS_CHART,
+       qualifier: 'visualDate'
+   }]
+},
+{ 
+    qualifier: 'visualPVCountry',
+   visualizations: [{
+       type: #AS_CHART,
+       qualifier: 'visualCountry'
+   }]
+}]
+annotate entity ZQUERYFLIGHTBOOK2
+    with 
+{
+    @UI.selectionField: [{ position: 10 }]
+    @UI.lineItem: [{ position: 10 }]
+    Airline;
+    @UI.lineItem: [{ position: 20 }]
+    FlightConnection;
+    @UI.lineItem: [{ position: 30 }]
+    FlightDate;
+    @UI.lineItem: [{ position: 40 }]
+    BookNumber;
+    @UI.lineItem: [{ position: 50 }]
+    Customer;
+    @UI.lineItem: [{ position: 60 }]
+    TravelAgency;
+    @UI.lineItem: [{ position: 70 }]
+    @UI.selectionField: [ { position: 20 } ]
+    month_year;
+    @UI.selectionField: [ { position: 30 } ]
+    @UI.lineItem: [{ position: 80 }]
+    CustomerCountry;
+    @UI.lineItem: [{ position: 90 }]
+    CustomerCity;
+    @UI.lineItem: [{ position: 100 }]
+    TravelAgencyCountry;
+    @UI.lineItem: [{ position: 110 }]
+    TravelAgencyCity;
+    @UI.lineItem: [{ position: 120 }]
+    TotalOfBookings;
+    @UI.lineItem: [{ position: 130 }]
+    BookingPrice;
+
+    
+}

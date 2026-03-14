@@ -1,0 +1,6 @@
+@EndUserText.label: 'Servicebinding for Flight booking'
+define service Z_FLIGHTBOOKINGS_SB {
+  expose Z_Query_FlightBookings as FlightBookings;
+  expose /DMO/I_Carrier_StdVH;
+  expose ZQUERYFLIGHTBOOK2      as NewFlight;
+}
